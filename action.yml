@@ -1,0 +1,35 @@
+# action.yml
+name: 'Pullreq Police'
+description: 'リリースブランチに変更があった場合に開発ブランチまで変更を反映させます。'
+inputs:
+  repo:
+    description: '対象リポジトリ名(owner/repo)'
+    required: true
+  token:
+    description: 'リポジトリトークン'
+    required: true
+  current_branch:
+    description: 'マージされたリリースブランチ名'
+    required: true
+  release_branch_regexp:
+    description: 'リリースブランチを判定する正規表現'
+    required: true
+    default: '^release-\d+\.\d+\.\d+\.\d+$'
+  pr_title:
+    description: '作成するプルリクのタイトル'
+    required: true
+    default: 'リリースブランチの変更を検知しました'
+  pr_body:
+    description: '作成するプルリクの本文'
+    required: true
+    default: ''
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.repo }}
+    - ${{ inputs.token }}
+    - ${{ inputs.current_branch }}
+    - ${{ inputs.release_branch_regexp }}
+    - ${{ inputs.pr_title }}
+    - ${{ inputs.pr_body }}
