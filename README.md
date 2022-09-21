@@ -24,6 +24,9 @@
 ## `pr_body`
 プルリクの本文。
 
+## `protected`
+プロテクトブランチに絞り込むかどうか。
+
 ## 使用例
 
 ```.github/workflows/main.yml
@@ -53,4 +56,5 @@ jobs:
           release_branch_regexp: '^release-\d+\.\d+\.\d+\.\d+$'
           pr_title: 'リリースブランチの変更を検知しました'
           pr_body: '速やかにマージしてください。'
+          protected: true
 ```

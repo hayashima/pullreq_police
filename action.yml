@@ -23,6 +23,10 @@ inputs:
     description: '作成するプルリクの本文'
     required: true
     default: ''
+  protected:
+    description: 'プロテクトブランチに絞り込むか'
+    required: false
+    default: null
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -33,3 +37,4 @@ runs:
     - ${{ inputs.release_branch_regexp }}
     - ${{ inputs.pr_title }}
     - ${{ inputs.pr_body }}
+    - ${{ inputs.protected }}

@@ -1,14 +1,14 @@
 require 'octokit'
 
 # コマンドライン引数から取得
-github_token, repo, current_branch, release_branch_regexp, title, body = ARGV
+github_token, repo, current_branch, release_branch_regexp, title, body, protected = ARGV
 
 client = Octokit::Client.new(access_token: github_token)
 
 all_branches = []
 # 100件ずつしか取得できないので取得できなくなるまでループさせる
 loop.with_index(1) do |_, page|
-  branches = client.branches(repo, per_page: 100, page: page, protected: true).map(&:name)
+  branches = client.branches(repo, per_page: 100, page: page, protected: protected).map(&:name)
   break if branches.size == 0
 
   all_branches += branches
