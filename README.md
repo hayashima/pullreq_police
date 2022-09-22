@@ -48,7 +48,7 @@ jobs:
         id: extract_branch
       - name: pullreq_police
         id: pullreq_police
-        uses: hayashima/pullreq_police@v3
+        uses: hayashima/pullreq_police@1.0.0
         with:
           repo: ${{ github.repository }}
           token: ${{ secrets.GITHUB_TOKEN }}
