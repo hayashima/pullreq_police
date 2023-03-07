@@ -44,7 +44,7 @@ jobs:
     steps:
       - name: Extract branch name
         shell: bash
-        run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+        run: echo "branch=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
         id: extract_branch
       - name: pullreq_police
         id: pullreq_police
